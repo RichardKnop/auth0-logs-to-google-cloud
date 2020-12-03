@@ -3,7 +3,7 @@ const uuid = require('node-uuid');
 const request = require('request');
 
 let config = {
-  endpoint: 'https://content-logging.googleapis.com/v2/entries:write?alt=json&key=',
+  endpoint: 'https://logging.googleapis.com/v2/entries:write?alt=json&key=',
 };
 
 function sendLogs(logs, callback) {

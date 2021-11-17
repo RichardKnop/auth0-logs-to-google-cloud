@@ -7,19 +7,25 @@ let config = {
 };
 
 function sendLogs(logs, callback) {
+  console.log("sending logs to google");
+  console.log(logs);
   if (logs.length === 0) {
-    callback();
+    return callback();
   }
 
   try {
-    request({
+    let req = {
       method: 'POST',
       url: config.endpoint + config.key,
       headers: { 'Content-Type': 'application/json' },
       body: logs.concat('\n')
-    }, (error, response) => {
+    };
+    console.log(req);
+    request(req, (error, response) => {
       const isError = !!error || response.statusCode < 200 || response.statusCode >= 400;
-
+      console.log(error);
+      console.log(response);
+      
       if (isError) {
         return callback(error || response.error || response.body);
       }
